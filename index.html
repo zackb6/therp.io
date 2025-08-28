@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therp | Begin Session</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Use the Inter font family */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom styles for the slider thumb */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border: 2px solid #9ca3af;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-top: -8px; /* Center thumb on track */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        input[type=range]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border: 2px solid #9ca3af;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /*  styles for the slider track */
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 9999px;
+            outline: none;
+        }
+
+        /* cursor */
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .blinking-dot {
+            animation: blink 1s step-start 0s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Header -->
+    <header class="absolute top-0 left-0 w-full p-6 z-10">
+        <div class="container mx-auto flex items-center">
+            <!-- Logo recreated based on the design -->
+            <div class="flex items-center text-2xl font-bold tracking-tight">
+                <span class="mr-1">therp</span>
+                <svg width="40" height="40" viewBox="0 0 100 100" class="inline-block" fill="none" stroke="currentColor" stroke-width="6">
+                    <path d="M60,50 a15,15 0 1,1 0,-0.1" /> 
+                    <circle cx="55" cy="42" r="3" fill="currentColor" stroke="none"/> 
+                    <circle cx="65" cy="42" r="3" fill="currentColor" stroke="none"/> 
+                    <path d="M50,55 l-10,10" /> 
+                    <path d="M40,65 l-10,0" /> 
+                    <circle cx="40" cy="65" r="5" /> 
+                    <circle cx="50" cy="55" r="5" /> 
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-gray-50 to-purple-50 transition-all duration-500">
+            <div class="text-center p-8 max-w-2xl">
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tighter text-gray-900 mb-4">
+                    See yourself clearly.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8">
+                    Therp is an AI for dynamic honesty. A mirror for your thoughts, adjusted to the level of clarity you're ready for.
+                </p>
+                <button id="beginSessionBtn" class="bg-gray-900 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-gray-700 transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-300">
+                    Begin Session
+                </button>
+            </div>
+        </section>
+
+        <!-- Honesty Level Selector Section (Initially Hidden) -->
+        <section id="honestySelector" class="min-h-screen flex items-center justify-center p-8 transition-colors duration-500 ease-in-out hidden">
+            <div class="w-full max-w-2xl bg-white/50 backdrop-blur-sm rounded-2xl shadow-2xl p-8 md:p-12 border border-gray-200/50">
+                <h2 class="text-3xl font-bold text-center mb-2">Choose Your Level of Honesty</h2>
+                <p class="text-center text-gray-600 mb-8">This sets the tone for our entire conversation. You can't change it mid-session.</p>
+                
+                <div class="mb-8">
+                    <input type="range" id="honestySlider" min="1" max="5" value="3" step="1" class="w-full">
+                </div>
+
+                <div class="text-center">
+                    <p class="text-xl font-semibold transition-opacity duration-300" id="honestyLabel">Balanced & Neutral</p>
+                    <p class="text-gray-500 h-12 transition-opacity duration-300" id="honestyDescription">A straightforward, grounded conversation.</p>
+                </div>
+                
+                <button id="startChatBtn" class="w-full mt-8 bg-gray-900 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-gray-700 transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-300">
+                    Start Conversation
+                </button>
+            </div>
+        </section>
+
+        <!-- Chat Interface (Initially Hidden) -->
+        <section id="chatInterface" class="min-h-screen flex items-center justify-center p-4 hidden transition-colors duration-500 ease-in-out">
+             <div class="w-full max-w-3xl h-[80vh] bg-white rounded-2xl shadow-2xl flex flex-col border border-gray-200/50">
+                <!-- Chat Header -->
+                <div id="chatHeader" class="p-4 border-b flex justify-between items-center transition-colors duration-500">
+                    <h3 class="font-bold text-lg">Conversation</h3>
+                    <span id="chatLevelIndicator" class="text-sm font-semibold px-3 py-1 rounded-full transition-colors duration-500">Level 3: Neutral</span>
+                </div>
+                
+                <!-- Messages Area -->
+                <div class="flex-1 p-6 overflow-y-auto space-y-4">
+                    <!-- AI Typing Indicator -->
+                    <div class="flex items-end space-x-2">
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                            <!-- Simple SVG mask icon -->
+                             <svg width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="8">
+                                <path d="M60,50 a15,15 0 1,1 0,-0.1" />
+                                <circle cx="55" cy="42" r="4" fill="currentColor" stroke="none"/>
+                                <circle cx="65" cy="42" r="4" fill="currentColor" stroke="none"/>
+                            </svg>
+                        </div>
+                        <div class="bg-gray-100 text-gray-800 p-3 rounded-lg rounded-bl-none max-w-md">
+                            <div class="flex items-center space-x-1">
+                                <span class="w-2 h-2 bg-gray-400 rounded-full blinking-dot"></span>
+                                <span class="w-2 h-2 bg-gray-400 rounded-full blinking-dot" style="animation-delay: 0.2s;"></span>
+                                <span class="w-2 h-2 bg-gray-400 rounded-full blinking-dot" style="animation-delay: 0.4s;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="p-4 border-t">
+                    <div class="relative">
+                        <input type="text" placeholder="Start by sharing what's on your mind..." class="w-full p-3 pr-12 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                        <button class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full hover:bg-gray-100 text-gray-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DOM Elements ---
+            const beginSessionBtn = document.getElementById('beginSessionBtn');
+            const startChatBtn = document.getElementById('startChatBtn');
+            const heroSection = document.getElementById('hero');
+            const honestySelectorSection = document.getElementById('honestySelector');
+            const chatInterfaceSection = document.getElementById('chatInterface');
+            const slider = document.getElementById('honestySlider');
+            const label = document.getElementById('honestyLabel');
+            const description = document.getElementById('honestyDescription');
+            const chatHeader = document.getElementById('chatHeader');
+            const chatLevelIndicator = document.getElementById('chatLevelIndicator');
+            
+            // --- Honesty Level Definitions ---
+            const levels = {
+                '1': {
+                    title: 'Warm & Validating',
+                    desc: 'A gentle, supportive space. Focus on comfort.',
+                    bgColor: 'bg-blue-100',
+                    indicatorColor: 'bg-blue-200 text-blue-800',
+                    headerColor: 'bg-blue-50 border-blue-200'
+                },
+                '2': {
+                    title: 'Gentle & Encouraging',
+                    desc: 'Constructive feedback delivered with care.',
+                    bgColor: 'bg-teal-50',
+                    indicatorColor: 'bg-teal-200 text-teal-800',
+                    headerColor: 'bg-teal-50/80 border-teal-200'
+                },
+                '3': {
+                    title: 'Balanced & Neutral',
+                    desc: 'A straightforward, grounded conversation.',
+                    bgColor: 'bg-gray-100',
+                    indicatorColor: 'bg-gray-200 text-gray-800',
+                    headerColor: 'bg-white border-gray-200'
+                },
+                '4': {
+                    title: 'Direct & Unfiltered',
+                    desc: 'Blunt honesty without emotional padding.',
+                    bgColor: 'bg-orange-100',
+                    indicatorColor: 'bg-orange-200 text-orange-800',
+                    headerColor: 'bg-orange-50 border-orange-200'
+                },
+                '5': {
+                    title: 'Sterile & Harsh',
+                    desc: 'Surgical, objective truth. May be uncomfortable.',
+                    bgColor: 'bg-gray-800',
+                    indicatorColor: 'bg-red-300 text-red-900',
+                    headerColor: 'bg-gray-900 border-gray-700 text-white'
+                }
+            };
+
+            // --- Event Listeners ---
+
+            // Transition from Hero to Selector
+            beginSessionBtn.addEventListener('click', () => {
+                heroSection.classList.add('hidden');
+                honestySelectorSection.classList.remove('hidden');
+                // Set initial state for the selector based on default slider value
+                updateHonestyUI(slider.value);
+            });
+
+            // Update UI based on slider movement
+            slider.addEventListener('input', (e) => {
+                updateHonestyUI(e.target.value);
+            });
+
+            // Transition from Selector to Chat
+            startChatBtn.addEventListener('click', () => {
+                const selectedLevel = slider.value;
+                honestySelectorSection.classList.add('hidden');
+                chatInterfaceSection.classList.remove('hidden');
+                applyChatTheme(selectedLevel);
+            });
+
+            // --- UI Update Functions ---
+
+            function updateHonestyUI(level) {
+                const config = levels[level];
+                
+                // Update text
+                label.textContent = config.title;
+                description.textContent = config.desc;
+                
+                // Update background color with smooth transition
+                // Remove all potential bg classes before adding the new one
+                Object.values(levels).forEach(l => honestySelectorSection.classList.remove(l.bgColor));
+                honestySelectorSection.classList.add(config.bgColor);
+                
+                // Special case for level 5 text color
+                if (level === '5') {
+                    label.classList.add('text-white');
+                    description.classList.add('text-gray-300');
+                } else {
+                    label.classList.remove('text-white');
+                    description.classList.remove('text-gray-300');
+                }
+            }
+
+            function applyChatTheme(level) {
+                const config = levels[level];
+                
+                // Apply background color to the chat section
+                Object.values(levels).forEach(l => chatInterfaceSection.classList.remove(l.bgColor));
+                chatInterfaceSection.classList.add(config.bgColor);
+
+                // Update chat header style
+                // Reset classes first
+                chatHeader.className = 'p-4 border-b flex justify-between items-center transition-colors duration-500';
+                config.headerColor.split(' ').forEach(c => chatHeader.classList.add(c));
+                
+                // Update level indicator style
+                chatLevelIndicator.textContent = `Level ${level}: ${config.title.split(' ')[0]}`;
+                chatLevelIndicator.className = 'text-sm font-semibold px-3 py-1 rounded-full transition-colors duration-500';
+                config.indicatorColor.split(' ').forEach(c => chatLevelIndicator.classList.add(c));
+            }
+        });
+    </script>
+</body>
+</html>
