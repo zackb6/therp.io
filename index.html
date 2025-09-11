@@ -69,6 +69,7 @@
             transition: all var(--transition-speed) ease;
             cursor: pointer;
             border: none;
+            text-align: center;
         }
 
         .btn-primary {
@@ -97,6 +98,14 @@
         section {
             padding: 80px 0;
         }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 64px;
+        }
+        
+        .section-header h2 { margin-bottom: 16px; }
 
         /* Header */
         .header {
@@ -172,14 +181,6 @@
         }
 
         /* How It Works Section */
-        .section-header {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 64px;
-        }
-        
-        .section-header h2 { margin-bottom: 16px; }
-
         .steps-grid {
             display: grid;
             gap: 32px;
@@ -248,6 +249,115 @@
             color: var(--text-secondary);
         }
 
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .pricing-card {
+            background-color: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--primary-color);
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .pricing-card .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .pricing-card .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            margin: 32px 0;
+            text-align: left;
+        }
+
+        .pricing-card li {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-card li svg {
+            width: 20px;
+            height: 20px;
+            color: var(--primary-color);
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .pricing-card .btn {
+            width: 100%;
+        }
+
+        /* FAQ Section */
+        #faq {
+            background-color: var(--bg-light);
+        }
+
+        .faq-container {
+            max-width: 768px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-item summary {
+            font-weight: 600;
+            padding: 20px;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+        
+        .faq-content {
+            padding: 0 20px 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
         /* CTA Section */
         #cta {
             background-color: var(--secondary-color);
@@ -314,6 +424,7 @@
             .main-nav { display: block; }
             .steps-grid { grid-template-columns: repeat(3, 1fr); }
             .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: repeat(4, 1fr); }
             .footer-grid .footer-col:first-child { grid-column: span 1; }
         }
@@ -321,6 +432,7 @@
         @media (min-width: 1024px) {
             h1 { font-size: 3.75rem; }
             .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+            .pricing-grid { grid-template-columns: repeat(3, 1fr); }
         }
     </style>
 </head>
@@ -330,14 +442,14 @@
     <header class="header">
         <div class="container">
             <a href="#" class="logo-link">
-                <img src="images/therpf-logo.pdf" alt="Therpf.ai Logo" class="logo-svg">
+                <img src="images/therpf-logo.svg" alt="Therpf.ai Logo" class="logo-svg">
             </a>
             <nav class="main-nav">
                 <ul>
                     <li><a href="#how-it-works">How It Works</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#cta">Pricing</a></li>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
             <a href="#cta" class="btn btn-primary cta-button">Get Started</a>
@@ -408,6 +520,87 @@
             </div>
         </section>
 
+        <!-- Pricing Section -->
+        <section id="pricing">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Simple, Transparent Pricing</h2>
+                    <p>Choose a plan that works for you. Start your journey with a 7-day free trial.</p>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Monthly</h3>
+                        <p class="price">$14.99<span>/month</span></p>
+                        <p>Flexible, cancel anytime.</p>
+                        <ul>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>Unlimited Conversations</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>24/7 Access</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>Journaling & Mood Tracking</li>
+                        </ul>
+                        <a href="#cta" class="btn btn-secondary">Choose Plan</a>
+                    </div>
+                    <div class="pricing-card popular">
+                        <h3>Annual</h3>
+                        <p class="price">$99<span>/year</span></p>
+                        <p>Save over 40%.</p>
+                        <ul>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>Everything in Monthly</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>Priority Access to New Features</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>Exclusive Content</li>
+                        </ul>
+                        <a href="#cta" class="btn btn-primary">Choose Plan</a>
+                    </div>
+                     <div class="pricing-card">
+                        <h3>Lifetime</h3>
+                        <p class="price">$299<span>/onetime</span></p>
+                        <p>Pay once, own forever.</p>
+                        <ul>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>Everything in Annual</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>Permanent Access</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>Founder's Badge</li>
+                        </ul>
+                        <a href="#cta" class="btn btn-secondary">Choose Plan</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Have questions? We have answers. If you need more help, feel free to contact us.</p>
+                </div>
+                <div class="faq-container">
+                    <details class="faq-item">
+                        <summary>Is Therpf.ai a replacement for human therapy?</summary>
+                        <div class="faq-content">
+                            <p>Therpf.ai is designed to be a tool for mental wellness and a companion for your thoughts. It is not a replacement for diagnosis or treatment by a human therapist, especially for severe mental health conditions. It can be a great first step or a supplement to traditional therapy.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>How is my privacy protected?</summary>
+                        <div class="faq-content">
+                            <p>We take your privacy extremely seriously. All conversations are encrypted and anonymized. We do not sell your data. You can read our full Privacy Policy for more details.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>What techniques does the AI use?</summary>
+                        <div class="faq-content">
+                            <p>Our AI is built on the principles of evidence-based therapeutic methods, primarily Cognitive Behavioral Therapy (CBT). It helps you identify, challenge, and reframe negative thought patterns in a structured way.</p>
+                        </div>
+                    </details>
+                     <details class="faq-item">
+                        <summary>Can I cancel my subscription anytime?</summary>
+                        <div class="faq-content">
+                            <p>Yes, absolutely. You can cancel your monthly or annual subscription at any time through your account settings. You will retain access until the end of your current billing period.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
         <!-- Call to Action Section -->
         <section id="cta">
             <div class="container">
@@ -424,7 +617,7 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <a href="#" class="logo-link" style="margin-bottom: 16px;">
-                         <img src="images/therpf-logo.pdf" alt="Therpf.ai Logo" class="logo-svg">
+                         <img src="images/therpf-logo-white.svg" alt="Therpf.ai Logo" class="logo-svg">
                     </a>
                     <p>Your personal mental wellness companion.</p>
                 </div>
@@ -432,7 +625,7 @@
                     <h5>Product</h5>
                     <ul>
                         <li><a href="#">Features</a></li>
-                        <li><a href="#cta">Pricing</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
                         <li><a href="#">Security</a></li>
                         <li><a href="#">Our Science</a></li>
                     </ul>
@@ -462,15 +655,25 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // This script handles smooth scrolling for all anchor links that start with '#'
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
 
                     const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
+                    // Making sure we have a valid target
+                    if (targetId.length > 1) {
+                        const targetElement = document.querySelector(targetId);
 
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    } else if (targetId === '#') {
+                        // Scroll to top if href is just '#'
+                        window.scrollTo({
+                            top: 0,
                             behavior: 'smooth'
                         });
                     }
@@ -481,5 +684,4 @@
 
 </body>
 </html>
-
 
