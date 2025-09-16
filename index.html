@@ -7,7 +7,7 @@
     <meta name="description" content="Therpf.ai provides a safe, anonymous space powered by AI to help you navigate your thoughts and feelings. Get started with your personal mental wellness companion.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         /* CSS Reset and Base Styles */
@@ -131,7 +131,7 @@
         }
         
         .logo-svg {
-            height: 32px;
+            height: 40px;
             width: auto;
         }
 
@@ -214,10 +214,76 @@
         .step-card h3 {
             margin-bottom: 12px;
         }
+
+        /* The Therpf Experience Section */
+        #experience {
+            background-color: var(--bg-light);
+        }
+
+        .experience-grid {
+            display: grid;
+            gap: 32px;
+        }
+
+        .experience-card {
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .experience-card h3 {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .level-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 16px;
+            margin-left: 12px;
+            text-transform: uppercase;
+        }
+
+        /* Level 1: Warm & Cozy */
+        .level-1 {
+            background-color: #F0F9FF; /* Light Blue */
+            border-color: #DBEAFE;
+        }
+        .level-1 .level-tag {
+            background-color: #DBEAFE;
+            color: #3B82F6;
+        }
+        .level-1 p { color: #374151; }
+
+        /* Level 3: Balanced & Neutral */
+        .level-3 {
+            background-color: var(--bg-white);
+            border-color: var(--border-color);
+        }
+        .level-3 .level-tag {
+            background-color: #F3F4F6;
+            color: #4B5563;
+        }
+
+        /* Level 5: Sterile & Surgical */
+        .level-5 {
+            background-color: #111827; /* Dark Gray */
+            color: #D1D5DB;
+            border-color: #374151;
+        }
+        .level-5 h3 { color: var(--bg-white); }
+        .level-5 p { color: #9CA3AF; font-family: 'Roboto Mono', monospace; }
+        .level-5 .level-tag {
+            background-color: #374151;
+            color: #F9FAFB;
+        }
         
         /* Testimonials Section */
         #testimonials {
-            background-color: var(--bg-light);
+            background-color: var(--bg-white);
         }
         
         .testimonials-grid {
@@ -226,11 +292,10 @@
         }
         
         .testimonial-card {
-            background-color: var(--bg-white);
+            background-color: var(--bg-light);
             padding: 32px;
             border-radius: 12px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
         
         .testimonial-card p:first-child {
@@ -423,6 +488,7 @@
         @media (min-width: 768px) {
             .main-nav { display: block; }
             .steps-grid { grid-template-columns: repeat(3, 1fr); }
+            .experience-grid { grid-template-columns: repeat(3, 1fr); }
             .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
             .pricing-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: repeat(4, 1fr); }
@@ -442,17 +508,17 @@
     <header class="header">
         <div class="container">
             <a href="#" class="logo-link">
-                <img src="images/therpf-logo.svg" alt="Therpf.ai Logo" class="logo-svg">
+                <img src="images/therpf-logo.pdf" alt="Therpf.ai Logo" class="logo-svg">
             </a>
             <nav class="main-nav">
                 <ul>
                     <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#experience">The Experience</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
-            <a href="#cta" class="btn btn-primary cta-button">Get Started</a>
+            <a href="#cta" class="btn btn-primary cta-button">Begin Session</a>
         </div>
     </header>
 
@@ -463,7 +529,7 @@
                 <h1>A new way to find your clarity.</h1>
                 <p>Therpf.ai provides a safe, anonymous space for you to talk through your thoughts and feelings, anytime, anywhere.</p>
                 <div class="hero-buttons">
-                    <a href="#cta" class="btn btn-primary cta-button">Start Your Free Trial</a>
+                    <a href="#cta" class="btn btn-primary cta-button">Begin Session</a>
                     <a href="#how-it-works" class="btn btn-secondary">Learn More</a>
                 </div>
             </div>
@@ -496,6 +562,30 @@
             </div>
         </section>
 
+        <!-- The Therpf Experience Section -->
+        <section id="experience">
+            <div class="container">
+                <div class="section-header">
+                    <h2>The Therpf Experience: Dynamic Honesty</h2>
+                    <p>Your journey is unique. Therpf's personality adapts to the level of honesty you're ready for, ensuring the experience is always right for you.</p>
+                </div>
+                <div class="experience-grid">
+                    <div class="experience-card level-1">
+                        <h3>The Gentle Mirror <span class="level-tag">Level 1</span></h3>
+                        <p>A warm, validating, and supportive space. Perfect for when you need comfort, understanding, and a gentle place to explore your feelings without judgment.</p>
+                    </div>
+                    <div class="experience-card level-3">
+                        <h3>The Clear Reflection <span class="level-tag">Level 3</span></h3>
+                        <p>A balanced, grounded, and neutral perspective. This mode helps you see situations clearly, offering objective insights and practical guidance.</p>
+                    </div>
+                    <div class="experience-card level-5">
+                        <h3>The Surgical Lens <span class="level-tag">Level 5</span></h3>
+                        <p>A sterile, direct, and radically honest approach. For when you are ready to cut through the noise and confront your blind spots with unfiltered clarity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Testimonials Section -->
         <section id="testimonials">
             <div class="container">
@@ -513,7 +603,7 @@
                         <p class="testimonial-author">- Jessica L. <span>Marketing Manager</span></p>
                     </div>
                     <div class="testimonial-card">
-                        <p>"I was skeptical about AI therapy, but the science behind it is solid. The app has helped me manage my anxiety in a way I never thought possible. Highly recommend."</p>
+                        <p>"The 'Surgical Lens' was intense, but it showed me a pattern I'd been stuck in for years. It's not always easy, but it's incredibly effective."</p>
                         <p class="testimonial-author">- Mike P. <span>Software Engineer</span></p>
                     </div>
                 </div>
@@ -557,7 +647,7 @@
                         <ul>
                             <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>Everything in Annual</li>
                             <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>Permanent Access</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>Founder's Badge</li>
+                            <li><svg xmlns="http://www.w.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>Founder's Badge</li>
                         </ul>
                         <a href="#cta" class="btn btn-secondary">Choose Plan</a>
                     </div>
@@ -606,7 +696,7 @@
             <div class="container">
                 <h2>Ready to Start Your Journey?</h2>
                 <p>Take the first step towards a healthier mind today. Your first week is on us. No commitment, cancel anytime.</p>
-                <a href="#cta" class="btn btn-secondary cta-button">Claim Your Free Week</a>
+                <a href="#cta" class="btn btn-secondary cta-button">Begin Session</a>
             </div>
         </section>
     </main>
@@ -617,14 +707,14 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <a href="#" class="logo-link" style="margin-bottom: 16px;">
-                         <img src="images/therpf-logo-white.svg" alt="Therpf.ai Logo" class="logo-svg">
+                         <img src="images/therpf-logo-white.pdf" alt="Therpf.ai Logo" class="logo-svg">
                     </a>
                     <p>Your personal mental wellness companion.</p>
                 </div>
                 <div class="footer-col">
                     <h5>Product</h5>
                     <ul>
-                        <li><a href="#">Features</a></li>
+                        <li><a href="#experience">The Experience</a></li>
                         <li><a href="#pricing">Pricing</a></li>
                         <li><a href="#">Security</a></li>
                         <li><a href="#">Our Science</a></li>
