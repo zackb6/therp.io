@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Begin Session - Therpf.ai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4F46E5;
+            --secondary-color: #111827;
+            --text-primary: #1F2937;
+            --text-secondary: #4B5563;
+            --bg-light: #F9FAFB;
+            --bg-white: #FFFFFF;
+            --border-color: #E5E7EB;
+            --transition-speed: 0.5s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            transition: background-color var(--transition-speed) ease;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 800px;
+            height: 90vh;
+            max-height: 900px;
+            background: var(--bg-white);
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Level Selection Screen */
+        #level-selection-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 48px;
+            text-align: center;
+            flex-grow: 1;
+            transition: background-color var(--transition-speed) ease;
+        }
+
+        #level-selection-screen h1 {
+            font-size: 2.25rem;
+            margin-bottom: 16px;
+            transition: color var(--transition-speed) ease;
+        }
+
+        #level-selection-screen .description {
+            margin-bottom: 48px;
+            color: var(--text-secondary);
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 60px; /* Reserve space for longer descriptions */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color var(--transition-speed) ease;
+        }
+        
+        .preview-chat-container {
+            background-color: rgba(0,0,0,0.02);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 48px;
+            min-height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .preview-message {
+            font-style: italic;
+            color: var(--text-secondary);
+            transition: color var(--transition-speed) ease;
+        }
+
+        .slider-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 48px;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 5px;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity .2s;
+        }
+        
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--primary-color);
+            cursor: pointer;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            transition: background-color var(--transition-speed) ease;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: var(--primary-color);
+            cursor: pointer;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            transition: background-color var(--transition-speed) ease;
+        }
+
+        #start-session-btn {
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+        }
+
+        /* Chat Screen Styles */
+        #chat-screen {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+        }
+        .chat-header { padding: 16px 24px; border-bottom: 1px solid var(--border-color); flex-shrink: 0; display: flex; justify-content: space-between; align-items: center; }
+        .chat-header h2 { font-size: 1.1rem; display: flex; align-items: center; }
+        .chat-header .level-tag { font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 12px; margin-left: 10px; }
+        .message-list { flex-grow: 1; padding: 24px; overflow-y: auto; }
+        .message { display: flex; margin-bottom: 16px; max-width: 80%; }
+        .message-content { padding: 12px 16px; border-radius: 18px; line-height: 1.5; }
+        .message.user { margin-left: auto; flex-direction: row-reverse; }
+        .message.user .message-content { background-color: var(--primary-color); color: white; border-bottom-right-radius: 4px; }
+        .message.ai .message-content { background-color: #F3F4F6; color: var(--text-primary); border-bottom-left-radius: 4px; }
+        .message.ai.typing .message-content { padding: 12px 16px; }
+        .typing-indicator span { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #9CA3AF; margin: 0 2px; animation: bounce 1.4s infinite ease-in-out both; }
+        .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
+        .message-form { display: flex; padding: 16px 24px; border-top: 1px solid var(--border-color); flex-shrink: 0; }
+        .message-form textarea { flex-grow: 1; border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; resize: none; font-family: 'Inter', sans-serif; font-size: 1rem; margin-right: 12px; }
+        .message-form button { padding: 0 24px; border: none; background-color: var(--primary-color); color: white; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .theme-level-1 .chat-header, .theme-level-2 .chat-header, .theme-level-3 .chat-header, .theme-level-4 .chat-header, .theme-level-5 .chat-header {transition: background-color var(--transition-speed), border-color var(--transition-speed);}
+        .theme-level-1 { background-color: #F0F9FF; } .theme-level-1 .chat-header { border-color: #DBEAFE; } .theme-level-1 .level-tag { background-color: #DBEAFE; color: #3B82F6; }
+        .theme-level-2 { background-color: #F0FDF4; } .theme-level-2 .chat-header { border-color: #D1FAE5; } .theme-level-2 .level-tag { background-color: #D1FAE5; color: #10B981; }
+        .theme-level-3 { background-color: var(--bg-white); } .theme-level-3 .chat-header { border-color: var(--border-color); } .theme-level-3 .level-tag { background-color: #F3F4F6; color: #4B5563; }
+        .theme-level-4 { background-color: #FEF2F2; } .theme-level-4 .chat-header { border-color: #FEE2E2; } .theme-level-4 .level-tag { background-color: #FEE2E2; color: #EF4444; }
+        .theme-level-5 { background-color: #1F2937; } .theme-level-5 .chat-header { background-color: var(--secondary-color); border-color: #374151; } .theme-level-5 .chat-header h2 { color: white; } .theme-level-5 .level-tag { background-color: #374151; color: #F9FAFB; } .theme-level-5 .message.ai .message-content { background-color: #374151; color: #D1D5DB; font-family: 'Roboto Mono', monospace; } .theme-level-5 .message-form { border-color: #374151; } .theme-level-5 .message-form textarea { background-color: #374151; border-color: #4B5563; color: white; }
+    </style>
+</head>
+<body id="body">
+
+    <div class="app-container">
+        <!-- Level Selection View -->
+        <div id="level-selection-screen">
+            <h1 id="level-title">The Clear Reflection</h1>
+            <p class="description" id="level-description">A balanced, grounded, and neutral perspective.</p>
+            
+            <div class="preview-chat-container" id="preview-container">
+                <p class="preview-message" id="preview-message">"Let's break that down. What's the core assumption you're making?"</p>
+            </div>
+
+            <div class="slider-container">
+                <input type="range" min="1" max="5" value="3" class="slider" id="honesty-slider">
+            </div>
+
+            <button id="start-session-btn">Begin Session at Level 3</button>
+        </div>
+
+        <!-- Chat View -->
+        <div id="chat-screen">
+            <div class="chat-header">
+                <h2 id="chat-title">Therpf.ai Session</h2>
+            </div>
+            <div class="message-list" id="message-list"></div>
+            <form class="message-form" id="message-form">
+                <textarea id="message-input" placeholder="Start typing..." rows="1"></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const slider = document.getElementById('honesty-slider');
+        const levelTitle = document.getElementById('level-title');
+        const levelDescription = document.getElementById('level-description');
+        const previewMessage = document.getElementById('preview-message');
+        const previewContainer = document.getElementById('preview-container');
+        const startBtn = document.getElementById('start-session-btn');
+        const body = document.getElementById('body');
+
+        const levelData = {
+            1: {
+                title: "The Gentle Mirror",
+                description: "A warm, validating, and supportive space for when you need comfort and understanding.",
+                preview: `"It's good to see you. Feel free to share whatever is on your mind."`,
+                theme: { bg: '#F0F9FF', text: '#374151', secondary: '#60A5FA', btn: '#3B82F6', btnText: 'white' }
+            },
+            2: {
+                title: "The Gentle Guide",
+                description: "Supportive questions to help you explore your thoughts and feelings at your own pace.",
+                preview: `"That's an interesting way to put it. Why do you think that is?"`,
+                theme: { bg: '#F0FDF4', text: '#374151', secondary: '#4ADE80', btn: '#22C55E', btnText: 'white' }
+            },
+            3: {
+                title: "The Clear Reflection",
+                description: "A balanced, grounded, and neutral perspective to help you see situations clearly.",
+                preview: `"Let's break that down. What's the core assumption you're making?"`,
+                theme: { bg: '#FFFFFF', text: '#1F2937', secondary: '#A78BFA', btn: '#4F46E5', btnText: 'white' }
+            },
+            4: {
+                title: "The Sharp Inquirer",
+                description: "Direct, pointed questions designed to challenge your core beliefs and uncover blind spots.",
+                preview: `"You seem to be avoiding the core issue. What is it you're not saying?"`,
+                theme: { bg: '#FEF2F2', text: '#374151', secondary: '#F87171', btn: '#EF4444', btnText: 'white' }
+            },
+            5: {
+                title: "The Surgical Lens",
+                description: "Warning: This mode is intensely personal and confrontational. It offers a sterile, surgical analysis of your deepest patterns and blind spots, bypassing comfort for the sake of profound clarity.",
+                preview: `"That is a cognitive distortion. Your feeling is not proof of fact."`,
+                theme: { bg: '#1F2937', text: '#E5E7EB', secondary: '#4B5563', btn: '#374151', btnText: 'white' }
+            }
+        };
+
+        function updateUI(level) {
+            const data = levelData[level];
+            const theme = data.theme;
+            
+            levelTitle.textContent = data.title;
+            levelDescription.textContent = data.description;
+            previewMessage.textContent = data.preview;
+            startBtn.textContent = `Begin Session at Level ${level}`;
+
+            // Update colors
+            body.style.backgroundColor = theme.bg;
+            levelTitle.style.color = theme.text;
+            levelDescription.style.color = theme.text === '#1F2937' ? '#4B5563' : theme.text;
+            previewMessage.style.color = theme.text;
+            previewContainer.style.backgroundColor = theme.bg === '#FFFFFF' ? '#F9FAFB' : 'rgba(0,0,0,0.1)';
+            previewContainer.style.borderColor = theme.bg === '#FFFFFF' ? '#F3F4F6' : 'rgba(255,255,255,0.1)';
+            startBtn.style.backgroundColor = theme.btn;
+            startBtn.style.color = theme.btnText;
+
+            const sliderThumb = document.querySelector('style#slider-thumb-style');
+            if (sliderThumb) sliderThumb.remove();
+            const newStyle = document.createElement('style');
+            newStyle.id = 'slider-thumb-style';
+            newStyle.textContent = `
+                .slider::-webkit-slider-thumb { background-color: ${theme.btn}; }
+                .slider::-moz-range-thumb { background-color: ${theme.btn}; }
+            `;
+            document.head.appendChild(newStyle);
+        }
+
+        slider.addEventListener('input', (e) => {
+            updateUI(e.target.value);
+        });
+        
+        // Initial UI setup
+        updateUI(slider.value);
+        
+        startBtn.addEventListener('click', () => {
+            selectLevel(slider.value);
+        });
+
+        // --- Chat Logic ---
+        const levelSelectionScreen = document.getElementById('level-selection-screen');
+        const chatScreen = document.getElementById('chat-screen');
+        const messageList = document.getElementById('message-list');
+        const messageForm = document.getElementById('message-form');
+        const messageInput = document.getElementById('message-input');
+        const chatTitle = document.getElementById('chat-title');
+        
+        let responseCounter = 0;
+        let currentLevel = 3;
+
+        function selectLevel(level) {
+            currentLevel = level;
+            const appContainer = document.querySelector('.app-container');
+
+            appContainer.style.transition = 'opacity 0.5s ease';
+            appContainer.style.opacity = '0';
+
+            setTimeout(() => {
+                body.style.backgroundColor = ''; // Revert body to default
+                levelSelectionScreen.style.display = 'none';
+                chatScreen.style.display = 'flex';
+                chatScreen.className = `theme-level-${level}`;
+
+                const titles = { 1: "Gentle Mirror", 2: "Gentle Guide", 3: "Clear Reflection", 4: "Sharp Inquirer", 5: "Surgical Lens" };
+                chatTitle.innerHTML = `${titles[level]} <span class="level-tag">Level ${level}</span>`;
+
+                const initialMessages = {
+                    1: "It's good to see you. Feel free to share whatever is on your mind.",
+                    2: "Welcome. I'm here to listen and help you explore your thoughts.",
+                    3: "Session started. Please state the topic you wish to discuss.",
+                    4: "Ready. Let's begin by identifying the primary challenge.",
+                    5: "System ready. Input your primary cognitive challenge."
+                };
+                addMessageToUI('ai', initialMessages[level]);
+                
+                appContainer.style.opacity = '1';
+            }, 500);
+        }
+        
+        const fullAiResponses = {
+            level1: ["Thank you for sharing. It sounds like a lot to hold.", "I hear you. It makes sense that you would feel that way.", "Could you tell me more about what was going through your mind?"],
+            level2: ["That's an interesting way to put it. Why do you think that is?", "What feelings come up for you when you think about that?", "Is there another way to look at this situation?"],
+            level3: ["Let's break that down. What's the core assumption you're making?", "What evidence do you have to support that thought?", "From an outside perspective, what might you see?"],
+            level4: ["You seem to be avoiding the core issue. What is it you're not saying?", "Is that belief 100% true, without a doubt? Let's challenge it.", "This sounds like a pattern. Where else has this shown up?"],
+            level5: ["That sounds like a cognitive distortion. The objective reality is likely less extreme.", "You are using emotional reasoning. Your feeling is not proof of fact.", "What action are you avoiding by focusing on this narrative?"]
+        };
+        
+        messageForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userInput = messageInput.value.trim();
+            if (userInput) {
+                addMessageToUI('user', userInput);
+                messageInput.value = '';
+                messageInput.style.height = 'auto';
+                simulateAIResponse();
+            }
+        });
+        messageInput.addEventListener('input', () => {
+            messageInput.style.height = 'auto';
+            messageInput.style.height = `${messageInput.scrollHeight}px`;
+        });
+        function addMessageToUI(sender, text) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender);
+            const contentElement = document.createElement('div');
+            contentElement.classList.add('message-content');
+            contentElement.textContent = text;
+            messageElement.appendChild(contentElement);
+            messageList.appendChild(messageElement);
+            messageList.scrollTop = messageList.scrollHeight;
+        }
+        function simulateAIResponse() {
+            const typingIndicator = document.createElement('div');
+            typingIndicator.classList.add('message', 'ai', 'typing');
+            typingIndicator.innerHTML = `<div class="message-content"><div class="typing-indicator"><span></span><span></span><span></span></div></div>`;
+            messageList.appendChild(typingIndicator);
+            messageList.scrollTop = messageList.scrollHeight;
+            setTimeout(() => {
+                messageList.removeChild(typingIndicator);
+                let responses = fullAiResponses[`level${currentLevel}`];
+                let response = responses[responseCounter % responses.length];
+                responseCounter++;
+                addMessageToUI('ai', response);
+            }, 1200 + Math.random() * 800);
+        }
+
+    </script>
+</body>
+</html>
+
