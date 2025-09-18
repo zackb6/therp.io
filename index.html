@@ -20,7 +20,7 @@
             --bg-light: #F9FAFB;
             --bg-white: #FFFFFF;
             --border-color: #E5E7EB;
-            --transition-speed: 0.3s;
+            --transition-speed: 0.5s;
         }
 
         * {
@@ -214,287 +214,118 @@
         .step-card h3 {
             margin-bottom: 12px;
         }
-
-        /* The Therpf Experience Section */
+        
+        /* Interactive Experience Section */
         #experience {
             background-color: var(--bg-light);
+            padding: 100px 0;
+            transition: background-color var(--transition-speed) ease;
         }
 
-        .experience-grid {
-            display: grid;
-            gap: 32px;
-        }
-
-        .experience-card {
-            padding: 32px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: all var(--transition-speed) ease;
-        }
-
-        .experience-card h3 {
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-        }
-
-        .level-tag {
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 4px 8px;
+        .experience-container {
+            background-color: var(--bg-white);
             border-radius: 16px;
-            margin-left: 12px;
-            text-transform: uppercase;
-        }
-
-        /* Level 1: Warm & Cozy */
-        .level-1 {
-            background-color: #F0F9FF; /* Light Blue */
-            border-color: #DBEAFE;
-        }
-        .level-1 .level-tag {
-            background-color: #DBEAFE;
-            color: #3B82F6;
-        }
-        .level-1 p { color: #374151; }
-
-        /* Level 3: Balanced & Neutral */
-        .level-3 {
-            background-color: var(--bg-white);
-            border-color: var(--border-color);
-        }
-        .level-3 .level-tag {
-            background-color: #F3F4F6;
-            color: #4B5563;
-        }
-
-        /* Level 5: Sterile & Surgical */
-        .level-5 {
-            background-color: #111827; /* Dark Gray */
-            color: #D1D5DB;
-            border-color: #374151;
-        }
-        .level-5 h3 { color: var(--bg-white); }
-        .level-5 p { color: #9CA3AF; font-family: 'Roboto Mono', monospace; }
-        .level-5 .level-tag {
-            background-color: #374151;
-            color: #F9FAFB;
-        }
-        
-        /* Testimonials Section */
-        #testimonials {
-            background-color: var(--bg-white);
-        }
-        
-        .testimonials-grid {
-            display: grid;
-            gap: 32px;
-        }
-        
-        .testimonial-card {
-            background-color: var(--bg-light);
-            padding: 32px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .testimonial-card p:first-child {
-            font-style: italic;
-            margin-bottom: 24px;
-        }
-        
-        .testimonial-author {
-            font-weight: 600;
-        }
-        
-        .testimonial-author span {
-            display: block;
-            font-weight: 400;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        /* Pricing Section */
-        .pricing-grid {
-            display: grid;
-            gap: 32px;
-            align-items: center;
-        }
-
-        .pricing-card {
-            background-color: var(--bg-white);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 40px;
+            padding: 48px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             text-align: center;
-        }
-
-        .pricing-card.popular {
-            border: 2px solid var(--primary-color);
-            transform: scale(1.05);
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-        }
-
-        .pricing-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-        }
-        
-        .pricing-card .price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .pricing-card .price span {
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--text-secondary);
-        }
-        
-        .pricing-card ul {
-            list-style: none;
-            margin: 32px 0;
-            text-align: left;
-        }
-
-        .pricing-card li {
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-        }
-
-        .pricing-card li svg {
-            width: 20px;
-            height: 20px;
-            color: var(--primary-color);
-            margin-right: 12px;
-            flex-shrink: 0;
-        }
-        
-        .pricing-card .btn {
-            width: 100%;
-        }
-
-        /* FAQ Section */
-        #faq {
-            background-color: var(--bg-light);
-        }
-
-        .faq-container {
-            max-width: 768px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
-        .faq-item {
-            background: var(--bg-white);
-            border: 1px solid var(--border-color);
+        #experience-title {
+            font-size: 1.75rem;
+            margin-bottom: 12px;
+            transition: color var(--transition-speed) ease;
+        }
+
+        #experience-description {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            min-height: 40px; /* Reserve space */
+            transition: color var(--transition-speed) ease;
+        }
+
+        #experience-preview-message {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            padding: 16px;
             border-radius: 8px;
-            margin-bottom: 16px;
-            overflow: hidden;
-        }
-
-        .faq-item summary {
-            font-weight: 600;
-            padding: 20px;
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background-color: var(--bg-light);
+            transition: all var(--transition-speed) ease;
+            min-height: 50px;
         }
         
-        .faq-item summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .faq-item summary::after {
-            content: '+';
-            font-size: 1.5rem;
-            transition: transform var(--transition-speed) ease;
-        }
-
-        .faq-item[open] summary::after {
-            transform: rotate(45deg);
-        }
-        
-        .faq-content {
-            padding: 0 20px 20px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        /* CTA Section */
-        #cta {
-            background-color: var(--secondary-color);
-            color: var(--bg-white);
-        }
-        
-        #cta .container {
-            background-image: linear-gradient(135deg, var(--primary-color) 0%, #6D28D9 100%);
-            border-radius: 16px;
-            padding: 64px 48px;
-            text-align: center;
-        }
-        
-        #cta h2 {
-            margin-bottom: 16px;
-        }
-        
-        #cta p {
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 500px;
+        .experience-slider-container {
+            width: 100%;
+            max-width: 400px;
             margin: 0 auto 32px;
         }
 
+        .experience-slider {
+             -webkit-appearance: none; appearance: none; width: 100%; height: 8px; background: #e5e7eb; border-radius: 5px; outline: none; transition: opacity .2s;
+        }
+        .experience-slider:hover { opacity: 1; }
+        .experience-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 24px; height: 24px; background: var(--primary-color); cursor: pointer; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.2); transition: background-color var(--transition-speed) ease;
+        }
+        .experience-slider::-moz-range-thumb {
+            width: 24px; height: 24px; background: var(--primary-color); cursor: pointer; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.2); transition: background-color var(--transition-speed) ease;
+        }
+
+        /* Testimonials Section */
+        #testimonials { background-color: var(--bg-white); }
+        .testimonials-grid { display: grid; gap: 32px; }
+        .testimonial-card { background-color: var(--bg-light); padding: 32px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .testimonial-card p:first-child { font-style: italic; margin-bottom: 24px; }
+        .testimonial-author { font-weight: 600; }
+        .testimonial-author span { display: block; font-weight: 400; font-size: 0.875rem; color: var(--text-secondary); }
+
+        /* Pricing Section */
+        .pricing-grid { display: grid; gap: 32px; align-items: center; }
+        .pricing-card { background-color: var(--bg-white); border: 1px solid var(--border-color); border-radius: 12px; padding: 40px; text-align: center; }
+        .pricing-card.popular { border: 2px solid var(--primary-color); transform: scale(1.05); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .pricing-card h3 { font-size: 1.5rem; margin-bottom: 8px; }
+        .pricing-card .price { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .pricing-card .price span { font-size: 1rem; font-weight: 400; color: var(--text-secondary); }
+        .pricing-card ul { list-style: none; margin: 32px 0; text-align: left; }
+        .pricing-card li { margin-bottom: 16px; display: flex; align-items: center; }
+        .pricing-card li svg { width: 20px; height: 20px; color: var(--primary-color); margin-right: 12px; flex-shrink: 0; }
+        .pricing-card .btn { width: 100%; }
+
+        /* FAQ Section */
+        #faq { background-color: var(--bg-light); }
+        .faq-container { max-width: 768px; margin: 0 auto; }
+        .faq-item { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 16px; overflow: hidden; }
+        .faq-item summary { font-weight: 600; padding: 20px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.5rem; transition: transform var(--transition-speed) ease; }
+        .faq-item[open] summary::after { transform: rotate(45deg); }
+        .faq-content { padding: 0 20px 20px; border-top: 1px solid var(--border-color); }
+
+        /* CTA Section */
+        #cta { background-color: var(--secondary-color); color: var(--bg-white); }
+        #cta .container { background-image: linear-gradient(135deg, var(--primary-color) 0%, #6D28D9 100%); border-radius: 16px; padding: 64px 48px; text-align: center; }
+        #cta h2 { margin-bottom: 16px; }
+        #cta p { color: rgba(255, 255, 255, 0.8); max-width: 500px; margin: 0 auto 32px; }
+
         /* Footer */
-        .footer {
-            background-color: var(--secondary-color);
-            color: #9CA3AF;
-            padding: 64px 0;
-        }
-        
-        .footer-grid {
-            display: grid;
-            gap: 48px;
-            margin-bottom: 64px;
-        }
-        
-        .footer-col h5 {
-            color: var(--bg-white);
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-        
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 12px; }
-        
-        .footer-col a {
-            color: #9CA3AF;
-            text-decoration: none;
-            transition: color var(--transition-speed) ease;
-        }
-        
+        .footer { background-color: var(--secondary-color); color: #9CA3AF; padding: 64px 0; }
+        .footer-grid { display: grid; gap: 48px; margin-bottom: 64px; }
+        .footer-col h5 { color: var(--bg-white); font-size: 1rem; font-weight: 600; margin-bottom: 16px; }
+        .footer-col ul { list-style: none; } .footer-col li { margin-bottom: 12px; }
+        .footer-col a { color: #9CA3AF; text-decoration: none; transition: color var(--transition-speed) ease; }
         .footer-col a:hover { color: var(--bg-white); }
-        
-        .footer-bottom {
-            border-top: 1px solid #374151;
-            padding-top: 32px;
-            text-align: center;
-            font-size: 0.875rem;
-        }
+        .footer-bottom { border-top: 1px solid #374151; padding-top: 32px; text-align: center; font-size: 0.875rem; }
 
         /* Responsive Design */
         @media (min-width: 768px) {
             .main-nav { display: block; }
             .steps-grid { grid-template-columns: repeat(3, 1fr); }
-            .experience-grid { grid-template-columns: repeat(3, 1fr); }
             .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
             .pricing-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: repeat(4, 1fr); }
-            .footer-grid .footer-col:first-child { grid-column: span 1; }
         }
-
         @media (min-width: 1024px) {
             h1 { font-size: 3.75rem; }
             .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
@@ -508,7 +339,7 @@
     <header class="header">
         <div class="container">
             <a href="#" class="logo-link">
-                <img src="images/therpf-logo.png" alt="Therpf.ai Logo" class="logo-svg">
+                <img src="images/therpf-logo.pdf" alt="Therpf.ai Logo" class="logo-svg">
             </a>
             <nav class="main-nav">
                 <ul>
@@ -518,7 +349,7 @@
                     <li><a href="#pricing">Pricing</a></li>
                 </ul>
             </nav>
-            <a href="chat.html" class="btn btn-primary cta-button">Begin Session</a>
+            <a href="chat.html" class="btn btn-primary">Begin Session</a>
         </div>
     </header>
 
@@ -529,7 +360,7 @@
                 <h1>A new way to find your clarity.</h1>
                 <p>Therpf.ai provides a safe, anonymous space for you to talk through your thoughts and feelings, anytime, anywhere.</p>
                 <div class="hero-buttons">
-                    <a href="chat.html" class="btn btn-primary cta-button">Begin Session</a>
+                    <a href="chat.html" class="btn btn-primary">Begin Session</a>
                     <a href="#how-it-works" class="btn btn-secondary">Learn More</a>
                 </div>
             </div>
@@ -537,7 +368,7 @@
 
         <!-- How It Works Section -->
         <section id="how-it-works">
-            <div class="container">
+             <div class="container">
                 <div class="section-header">
                     <h2>How It Works</h2>
                     <p>A simple, confidential, and effective process designed to fit your life.</p>
@@ -545,18 +376,18 @@
                 <div class="steps-grid">
                     <div class="step-card">
                         <div class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
-                        <h3>1. Start a Conversation</h3>
-                        <p>Simply open the app and start typing. There are no appointments or waiting rooms. Your AI companion is ready 24/7.</p>
+                        <h3>1. Choose Your Experience</h3>
+                        <p>Select the level of honesty you're ready for, from a gentle guide to a radically honest mirror.</p>
                     </div>
                     <div class="step-card">
                         <div class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286z" /></svg></div>
-                        <h3>2. Guided by Science</h3>
-                        <p>Our AI uses proven techniques from Cognitive Behavioral Therapy (CBT) and other methods to guide you through challenges.</p>
+                        <h3>2. Start a Conversation</h3>
+                        <p>Our AI uses proven techniques like CBT to guide you through challenges, anytime you need it.</p>
                     </div>
                     <div class="step-card">
                         <div class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg></div>
                         <h3>3. Reflect & Grow</h3>
-                        <p>Gain insights into your thought patterns. Therpf.ai helps you identify challenges and build healthier mental habits over time.</p>
+                        <p>Gain insights into your thought patterns and build healthier mental habits over time.</p>
                     </div>
                 </div>
             </div>
@@ -565,28 +396,23 @@
         <!-- The Therpf Experience Section -->
         <section id="experience">
             <div class="container">
-                <div class="section-header">
+                 <div class="section-header">
                     <h2>The Therpf Experience: Dynamic Honesty</h2>
-                    <p>Your journey is unique. Therpf's personality adapts to the level of honesty you're ready for, ensuring the experience is always right for you.</p>
+                    <p>Your journey is unique. Use the slider to preview how Therpf's personality adapts to the level of honesty you're ready for.</p>
                 </div>
-                <div class="experience-grid">
-                    <div class="experience-card level-1">
-                        <h3>The Gentle Mirror <span class="level-tag">Level 1</span></h3>
-                        <p>A warm, validating, and supportive space. Perfect for when you need comfort, understanding, and a gentle place to explore your feelings without judgment.</p>
+                <div class="experience-container">
+                    <h3 id="experience-title">The Clear Reflection</h3>
+                    <p id="experience-description">A balanced, grounded, and neutral perspective.</p>
+                    <p id="experience-preview-message">"Let's break that down. What's the core assumption you're making?"</p>
+                    <div class="experience-slider-container">
+                        <input type="range" min="1" max="5" value="3" class="experience-slider" id="experience-slider">
                     </div>
-                    <div class="experience-card level-3">
-                        <h3>The Clear Reflection <span class="level-tag">Level 3</span></h3>
-                        <p>A balanced, grounded, and neutral perspective. This mode helps you see situations clearly, offering objective insights and practical guidance.</p>
-                    </div>
-                    <div class="experience-card level-5">
-                        <h3>The Surgical Lens <span class="level-tag">Level 5</span></h3>
-                        <p>A sterile, direct, and radically honest approach. For when you are ready to cut through the noise and confront your blind spots with unfiltered clarity.</p>
-                    </div>
+                    <a href="chat.html" class="btn btn-primary" id="experience-cta-btn">Begin a Session</a>
                 </div>
             </div>
         </section>
 
-        <!-- Testimonials Section -->
+        <!-- Testimonials, Pricing, FAQ, CTA, Footer ... (rest of the sections are unchanged) -->
         <section id="testimonials">
             <div class="container">
                 <div class="section-header">
@@ -610,7 +436,6 @@
             </div>
         </section>
 
-        <!-- Pricing Section -->
         <section id="pricing">
             <div class="container">
                 <div class="section-header">
@@ -618,7 +443,7 @@
                     <p>Choose a plan that works for you. Start your journey with a 7-day free trial.</p>
                 </div>
                 <div class="pricing-grid">
-                    <div class="pricing-card">
+                     <div class="pricing-card">
                         <h3>Monthly</h3>
                         <p class="price">$14.99<span>/month</span></p>
                         <p>Flexible, cancel anytime.</p>
@@ -654,8 +479,7 @@
                 </div>
             </div>
         </section>
-
-        <!-- FAQ Section -->
+        
         <section id="faq">
             <div class="container">
                 <div class="section-header">
@@ -691,7 +515,6 @@
             </div>
         </section>
 
-        <!-- Call to Action Section -->
         <section id="cta">
             <div class="container">
                 <h2>Ready to Start Your Journey?</h2>
@@ -700,14 +523,13 @@
             </div>
         </section>
     </main>
-
-    <!-- Footer -->
+    
     <footer class="footer">
-        <div class="container">
+         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <a href="#" class="logo-link" style="margin-bottom: 16px;">
-                         <img src="images/therpf-logo.png" alt="Therpf.ai Logo" class="logo-svg">
+                         <img src="images/therpf-logo.pdf" alt="Therpf.ai Logo" class="logo-svg">
                     </a>
                     <p>Your personal mental wellness companion.</p>
                 </div>
@@ -744,27 +566,81 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // This script handles smooth scrolling for internal page links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
+        // --- Interactive Experience Slider Logic ---
+        const experienceSlider = document.getElementById('experience-slider');
+        const experienceTitle = document.getElementById('experience-title');
+        const experienceDescription = document.getElementById('experience-description');
+        const experiencePreviewMessage = document.getElementById('experience-preview-message');
+        const experienceCtaBtn = document.getElementById('experience-cta-btn');
+        const experienceSection = document.getElementById('experience');
 
-                    const targetId = this.getAttribute('href');
-                    if (targetId.length > 1) {
-                        const targetElement = document.querySelector(targetId);
-                        if (targetElement) {
-                            targetElement.scrollIntoView({
-                                behavior: 'smooth'
-                            });
-                        }
-                    } else if (targetId === '#') {
-                        window.scrollTo({
-                            top: 0,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+        const levelData = {
+            1: {
+                title: "The Gentle Mirror", description: "A warm, validating, and supportive space.",
+                preview: `"It's good to see you. Feel free to share whatever is on your mind."`,
+                theme: { bg: '#F0F9FF', btn: '#3B82F6'}
+            },
+            2: {
+                title: "The Gentle Guide", description: "Supportive questions to help you explore your thoughts.",
+                preview: `"That's an interesting way to put it. Why do you think that is?"`,
+                theme: { bg: '#F0FDF4', btn: '#22C55E' }
+            },
+            3: {
+                title: "The Clear Reflection", description: "A balanced, grounded, and neutral perspective.",
+                preview: `"Let's break that down. What's the core assumption you're making?"`,
+                theme: { bg: '#F9FAFB', btn: '#4F46E5' }
+            },
+            4: {
+                title: "The Sharp Inquirer", description: "Direct questions to challenge your core beliefs.",
+                preview: `"You seem to be avoiding the core issue. What is it you're not saying?"`,
+                theme: { bg: '#FEF2F2', btn: '#EF4444' }
+            },
+            5: {
+                title: "The Surgical Lens", description: "Radically honest analysis to uncover your deepest blind spots.",
+                preview: `"That is a cognitive distortion. Your feeling is not proof of fact."`,
+                theme: { bg: '#F1F5F9', btn: '#334155' }
+            }
+        };
+        
+        function updateExperienceUI(level) {
+            const data = levelData[level];
+            
+            experienceTitle.textContent = data.title;
+            experienceDescription.textContent = data.description;
+            experiencePreviewMessage.textContent = data.preview;
+            
+            experienceSection.style.backgroundColor = data.theme.bg;
+            experienceCtaBtn.style.backgroundColor = data.theme.btn;
+            
+            const sliderThumb = document.querySelector('style#exp-slider-thumb-style');
+            if (sliderThumb) sliderThumb.remove();
+            const newStyle = document.createElement('style');
+            newStyle.id = 'exp-slider-thumb-style';
+            newStyle.textContent = `
+                .experience-slider::-webkit-slider-thumb { background-color: ${data.theme.btn}; }
+                .experience-slider::-moz-range-thumb { background-color: ${data.theme.btn}; }
+            `;
+            document.head.appendChild(newStyle);
+        }
+
+        experienceSlider.addEventListener('input', (e) => {
+            updateExperienceUI(e.target.value);
+        });
+        
+        // Initial UI setup for the experience slider
+        updateExperienceUI(experienceSlider.value);
+
+
+        // --- Smooth Scrolling for on-page links ---
+         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId.length > 1) {
+                    document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+                } else if (targetId === '#') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             });
         });
     </script>
